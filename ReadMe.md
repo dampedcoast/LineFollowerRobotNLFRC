@@ -53,9 +53,9 @@ between runs.
 |-----------|---------|
 | MCU | ESP32-S3 dev board |
 | Line sensor | XLine 16 IR array: 16 channels behind a 16:1 analog multiplexer (S0–S3 select, one analog output) |
-| Motors | 2 × N20 micro gear motors (`<gear ratio / RPM>`) |
-| Motor driver | Dual H-bridge with IN1–IN4 + ENA/ENB (`<driver model>`) |
-| Power | `<battery>`. **Power the logic rail from the battery**, since brownout resets were seen on USB power while logging |
+| Motors | 2 × N20 micro gear motors (`5 volts 1000 RPM`) |
+| Motor driver | tb6612 drive motor driver |
+| Power | 12 Volts Lipo 1300mAH with a buck converter for a 5volts output |
 | Start button | Momentary push button to GND (uses the internal pull-up) |
 
 ---
