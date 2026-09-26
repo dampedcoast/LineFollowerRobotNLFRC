@@ -328,50 +328,6 @@ All parameters are live-tunable from the web UI. Distances and positions are in 
 4. **Forks and tips**: watch *Edge latch L/R* on the UI while pushing the robot through by hand.
    Latches should appear just before the branch. Adjust `EDGE_CONFIRM_MS` or `EDGE_ZONE`.
 
-Symptom-to-fix cheat sheet:
 
-| Symptom | Try |
-|---------|-----|
-| `XING` / `INV?` flickers on thick line features | Raise `XING_MIN` (10–12) |
-| False `INV-OUT` inside an inverted zone | Raise `INV_CONFIRM_MS` toward 350, or keep speed up in the zone |
-| Robot reverses back into a zone after exiting | Raise `GAP_EXPECT_MS` to 1000 |
-| Stale latch hijacks a later turn | Lower `EDGE_HOLD_MS` |
-| Takes the wrong branch at a fork | Check `Y_SIDE`, `EDGE_SWAP` and `DIR_SWAP` |
-| Motors stall at low PWM | Raise `KICK_PWM` or `KICK_MS` |
-
----
-
-## Troubleshooting
-
-| Problem | Cause / fix |
-|---------|-------------|
-| Random resets (`BROWNOUT_RST`) | Motor current is dragging the 3.3 V rail down. Power the logic from the battery and add bulk capacitance near the driver |
-| Won't compile: `ledcAttach` not declared | ESP32 core 2.x is installed. Update to 3.x |
-| Sensor bar all `B` or all `W` | Wrong `THRESHOLD`, or the sensor is at the wrong height. Re-calibrate |
-| Noisy readings | Increase `MUX_SETTLE_US` |
-| Can't reach the web UI | Make sure you're on the `LineFollower` network, and turn off mobile data on your phone |
-| Turns the wrong way on straights | A motor is wired backwards. Swap its leads |
-
----
-
-## Revision History
-
-| Rev | Summary |
-|-----|---------|
-| rev11 | Day-2 arena: `Y_MIN` 2 → 4, `INV_CONFIRM_MS` 180 → 280, new zone-gap window after inverted-zone exits |
-| rev10 | Day-1 field-validated tune locked in. `PIVOT_TIMEOUT_MS` made web-tunable. No track-specific routing |
-| rev9 | Hardcoded `TURN_SEQ` removed. All routing is now edge-latch driven |
-| rev8 | Channel-unit error scale. Added error-hold and straight-line boost |
-| rev6 | Edge-latch turn for acute tips, diodes and 90° corners |
-
-Full notes are in the header comment of `line_follower.ino`.
-
----
-
-## License
-
-MIT. See `LICENSE`.
-
----
 
 **Author:** Yazan Abubakir 
